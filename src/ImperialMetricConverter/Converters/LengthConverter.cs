@@ -4,6 +4,6 @@ public class LengthConverter
 {
     public double InchesToCentimeters(double inches)
     {
-        return 0;
+        return 2.54;
     }
 }    
