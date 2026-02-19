@@ -1,5 +1,5 @@
 # Test Driven Development - Imperial/Metric Converter.
-Automated unit testing using Test Driven Development!
+Automated unit testing using Test Driven Development for a unit converter!
 
 ## Project Description - Unit System
 - This system is a unit converter for Imperial and Metric measurements.
