@@ -6,15 +6,15 @@ using Xunit;
 * Convert 1 inch to cm.
 */
 
-// namespace defines a group of related code (classes, objects, interfaces, etc.)
+// namespace defines a group of related code (classes, objects, interfaces, etc.).
 namespace ImperialMetricConverter.Tests.Converters
 {
-    // defines a test class
+    // defines a test class.
     public class LengthConverterTests
     {
         // 'Fact' attribute tells Xunit to run this test.
         [Fact]
-        // test method naming style: Method_Condition_Expectation
+        // test method naming style: Method_Condition_Expectation.
         public void ConvertInchesToCentimeters_WhenGiven1Inch_Returns2Point54()
         {
             // creating an instance of the class to test.
@@ -31,12 +31,15 @@ namespace ImperialMetricConverter.Tests.Converters
         }
 
         [Fact]
+        // Test converting 2 inches to 5.08 centimeters.
         public void InchesToCentimeters_WhenGiven2Inches_Returns5Point08()
         {
             var converter = new LengthConverter();
 
+            // pass in value 2 (inches).
             var result = converter.InchesToCentimeters(2);
 
+            // expected result: 5.08.
             Assert.Equal(5.08, result);
             
         }
