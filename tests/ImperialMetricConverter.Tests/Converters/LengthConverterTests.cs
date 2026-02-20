@@ -29,5 +29,16 @@ namespace ImperialMetricConverter.Tests.Converters
             Assert.Equal(2.54, result);
 
         }
+
+        [Fact]
+        public void InchesToCentimeters_WhenGiven2Inches_Returns5Point08()
+        {
+            var converter = new LengthConverter();
+
+            var result = converter.InchesToCentimeters(2);
+
+            Assert.Equal(5.08, result);
+            
+        }
     }
 }
