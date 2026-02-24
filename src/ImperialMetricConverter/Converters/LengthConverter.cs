@@ -43,6 +43,8 @@ public class LengthConverter
         {
             LengthUnit.Inch => value * 0.0254,
             LengthUnit.Centimeter => value / 100,
+            LengthUnit.Foot => value * 0.3048,
+            LengthUnit.Meter => value,
             _ => throw new ArgumentException("unit not supported")
         };
     }
@@ -54,6 +56,8 @@ public class LengthConverter
         {
             LengthUnit.Inch => value / 0.0254,
             LengthUnit.Centimeter => value * 100,
+            LengthUnit.Foot => value / 0.3048,
+            LengthUnit.Meter => value,
             _ => throw new ArgumentException("unit not supported")
         };
     }
