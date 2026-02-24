@@ -50,6 +50,7 @@ public class LengthConverter
             LengthUnit.Meter => value,
             LengthUnit.Yard => value * 0.9144,
             LengthUnit.Mile => value * 1609.34,
+            LengthUnit.Kilometer => value * 1000,
             _ => throw new ArgumentException("unit not supported")
         };
     }
@@ -65,6 +66,7 @@ public class LengthConverter
             LengthUnit.Meter => value,
             LengthUnit.Yard => value / 0.9144,
             LengthUnit.Mile => value * 0.000621371,
+            LengthUnit.Kilometer => value / 1000,
             _ => throw new ArgumentException("unit not supported")
         };
     }
