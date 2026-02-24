@@ -54,5 +54,17 @@ namespace ImperialMetricConverter.Tests.Converters
             Assert.Throws<ArgumentException>(() => converter.Convert(-1, LengthUnit.Inch, LengthUnit.Centimeter));
         }
 
+        [Fact]
+        // Reversing the conversion. Now converting 1 Centimeter into inches.
+        public void Convert_WhenConverting1CentimeterToInches_Return0Point39()
+        {
+            var converter = new LengthConverter();
+
+            var result = converter.Convert(1, LengthUnit.Centimeter, LengthUnit.Inch);
+
+            // (expected, actual, decimal value)
+            Assert.Equal(0.3937, result, 4);
+        }
+
     }
 }
