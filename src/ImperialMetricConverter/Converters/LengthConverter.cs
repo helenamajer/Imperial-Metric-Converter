@@ -12,6 +12,12 @@ public class LengthConverter
     // input must be positive.
     public double Convert(double value, LengthUnit from, LengthUnit to)
     {
+        if (value < 0)
+            throw new ArgumentException("Length cannot be negative.");
+
+        if (from == LengthUnit.Inch && to == LengthUnit.Centimeter)
+            return value * 2.54;
+        
         throw new NotImplementedException();
     }
 }    
