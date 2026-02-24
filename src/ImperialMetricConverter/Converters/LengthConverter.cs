@@ -1,15 +1,17 @@
 namespace ImperialMetricConverter.Converters;
 
+public enum LengthUnit
+{
+    Inch,
+    Centimeter
+}
+
 // Measurement converter for units of length.
 public class LengthConverter
 {
-    // Converting inches to centimeters.
-    public double InchesToCentimeters(double inches)
+    // input must be positive.
+    public double Convert(double value, LengthUnit from, LengthUnit to)
     {
-        // input must be positive.
-        if (inches < 0)
-            throw new ArgumentException("Length cannot be negative.");
-        
-        return (inches * 2.54);
+        throw new NotImplementedException();
     }
 }    
