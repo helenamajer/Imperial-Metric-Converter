@@ -1,5 +1,5 @@
 # Test Driven Development - Imperial/Metric Converter.
-Automated unit testing using Test Driven Development for a unit converter!
+Automated unit testing using Test Driven Development for an Imperial/Metric unit converter!
 
 ## Project Description - Unit System
 - This system is a unit converter for Imperial and Metric measurements.
@@ -34,8 +34,8 @@ src/
 - UI/ - formats console UI/UX
 <br><br>
 
-tests/ (5 SUT classes)
-- Converters/ - LengthConverter, MassConverter, VolumeConverter
+tests/ (SUT classes)
+- Converters/ - LengthConverter, MassConverter, VolumeConverter, TempuratureConverter
 - Services/ - ConverterService
 - UI/ - ConsoleInterface
 

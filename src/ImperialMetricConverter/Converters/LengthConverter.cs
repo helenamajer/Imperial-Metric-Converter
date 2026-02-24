@@ -37,7 +37,7 @@ public class LengthConverter
         return FromMeters(meters, to);
     }
 
-    // covert the input unit to a base unit (meters).
+    // convert the input unit to a base unit (meters).
     private double ToMeters(double value, LengthUnit unit)
     {
         return unit switch

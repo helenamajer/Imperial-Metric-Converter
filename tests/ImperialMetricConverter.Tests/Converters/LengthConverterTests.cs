@@ -103,6 +103,5 @@ namespace ImperialMetricConverter.Tests.Converters
 
             Assert.Equal(0.9144, result, 4);
         }
-
     }
 }
