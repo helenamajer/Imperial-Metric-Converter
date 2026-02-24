@@ -46,6 +46,7 @@ public class LengthConverter
             LengthUnit.Centimeter => value / 100,
             LengthUnit.Foot => value * 0.3048,
             LengthUnit.Meter => value,
+            LengthUnit.Yard => value * 0.9144,
             _ => throw new ArgumentException("unit not supported")
         };
     }
@@ -59,10 +60,8 @@ public class LengthConverter
             LengthUnit.Centimeter => value * 100,
             LengthUnit.Foot => value / 0.3048,
             LengthUnit.Meter => value,
+            LengthUnit.Yard => value * 1.0936,
             _ => throw new ArgumentException("unit not supported")
         };
     }
-
 }    
-
-//  NEXT STEP REFACTOR INCLUDING READ ME.
