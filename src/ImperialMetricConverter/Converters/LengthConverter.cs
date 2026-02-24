@@ -21,6 +21,8 @@ public class LengthConverter
         if (from == LengthUnit.Centimeter && to == LengthUnit.Inch)
             return value / 2.54;
         
+        if (from == to)
+            return value;
         throw new NotImplementedException();
     }
 }    
