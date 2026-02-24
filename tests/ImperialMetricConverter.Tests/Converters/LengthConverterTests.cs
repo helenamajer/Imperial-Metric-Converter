@@ -56,7 +56,7 @@ namespace ImperialMetricConverter.Tests.Converters
 
         [Fact]
         // Reversing the conversion. Now converting 1 Centimeter into inches.
-        public void Convert_WhenConverting1CentimeterToInches_Return0Point39()
+        public void Convert_WhenConverting1CentimeterToInches_Return0Point3937()
         {
             var converter = new LengthConverter();
 
@@ -64,6 +64,19 @@ namespace ImperialMetricConverter.Tests.Converters
 
             // (expected, actual, decimal value)
             Assert.Equal(0.3937, result, 4);
+        }
+
+        [Fact]
+        // When the conversion units are the same, return the input value.
+        public void Convert_WhenToAndFromAreSameUnit_ReturnSameValue()
+        {
+            var converter = new LengthConverter();
+
+            var inchResult = converter.Convert(1, LengthUnit.Inch, LengthUnit.Inch);
+            var cmResult = converter.Convert(1, LengthUnit.Centimeter, LengthUnit.Centimeter);
+
+            Assert.Equal(1, inchResult);
+            Assert.Equal(1, cmResult);
         }
 
     }
