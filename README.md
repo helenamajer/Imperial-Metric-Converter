@@ -41,10 +41,14 @@ tests/ (SUT classes)
 
 ## Conversion Reference
 ### Length:
-- 1 inch = 2.54 cm
+- 1 inch = 2.54 cm / 0.0254 m
 - 1 foot = 0.3048 m (12 inches)
 - 1 yard = 0.9144 m (3 feet)
-- 1 mile = 1.609344 km (5280 feet)
+- 1 mile = 1609.34 m / 1.609344 km (5280 feet)
+
+- 1 centimeter = 0.01 m
+- 1 meter = 1 m
+- 1 kilometer = 1000 m
 
 ### Mass:
 - 1 pound = 0.453592 kg

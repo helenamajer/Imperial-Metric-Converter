@@ -45,7 +45,7 @@ public class LengthConverter
         return unit switch
         {
             LengthUnit.Inch => value * 0.0254,
-            LengthUnit.Centimeter => value / 100,
+            LengthUnit.Centimeter => value * 0.01,
             LengthUnit.Foot => value * 0.3048,
             LengthUnit.Meter => value,
             LengthUnit.Yard => value * 0.9144,
@@ -61,11 +61,11 @@ public class LengthConverter
         return unit switch
         {
             LengthUnit.Inch => value / 0.0254,
-            LengthUnit.Centimeter => value * 100,
+            LengthUnit.Centimeter => value / 0.01,
             LengthUnit.Foot => value / 0.3048,
             LengthUnit.Meter => value,
             LengthUnit.Yard => value / 0.9144,
-            LengthUnit.Mile => value * 0.000621371,
+            LengthUnit.Mile => value / 1609.34,
             LengthUnit.Kilometer => value / 1000,
             _ => throw new ArgumentException("unit not supported")
         };
