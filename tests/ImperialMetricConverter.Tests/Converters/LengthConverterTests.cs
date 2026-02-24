@@ -114,5 +114,16 @@ namespace ImperialMetricConverter.Tests.Converters
 
             Assert.Equal(1609.34, result, 2);
         }
+
+        [Fact]
+        // converting 1 kilometer to the base unit (meters).
+        public void Convert_1KilometerToMeters_Returns1000()
+        {
+            var converter = new LengthConverter();
+
+            var result = converter.Convert(1, LengthUnit.Kilometer, LengthUnit.Meter);
+
+            Assert.Equal(1000, result);
+        }
     }
 }
