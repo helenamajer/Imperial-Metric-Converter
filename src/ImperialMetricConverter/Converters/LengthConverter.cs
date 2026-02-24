@@ -12,6 +12,7 @@ public enum LengthUnit
     Meter,
     Foot,
     Yard,
+    Mile,
 }
 
 /*
