@@ -2,6 +2,9 @@ using ImperialMetricConverter.Converters;
 using Xunit;
 
 /*
+* Test suite of metric and imperial measurement conversion for units of length.
+*
+*
 * First test as an example.
 * Convert 1 inch to cm.
 */
@@ -77,6 +80,17 @@ namespace ImperialMetricConverter.Tests.Converters
 
             Assert.Equal(1, inchResult);
             Assert.Equal(1, cmResult);
+        }
+
+        [Fact]
+        // Convert 1 foot to the base unit (meters).
+        public void Convert_1FootToMeters_Returns0Point3048()
+        {
+            var converter = new LengthConverter();
+
+            var result = converter.Convert(1, LengthUnit.Foot, LengthUnit.Meter);
+
+            Assert.Equal(0.3048, result, 4);
         }
 
     }

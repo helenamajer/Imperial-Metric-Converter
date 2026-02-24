@@ -8,7 +8,9 @@ namespace ImperialMetricConverter.Converters;
 public enum LengthUnit
 {
     Inch,
-    Centimeter
+    Centimeter,
+    Meter,
+    Foot
 }
 
 /*
