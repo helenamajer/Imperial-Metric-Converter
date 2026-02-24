@@ -14,7 +14,7 @@ namespace ImperialMetricConverter.Tests.Converters
     {
         // 'Fact' attribute tells Xunit to run this test.
         [Fact]
-        // test converting 1 inch to 2.54 centimeters/
+        // test converting 1 inch to 2.54 centimeters.
         // test method naming style: Method_Condition_Expectation.
         public void Convert_WhenConverting1InchToCentimeters_Returns2Point54()
         {
