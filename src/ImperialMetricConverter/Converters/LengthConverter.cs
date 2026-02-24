@@ -10,7 +10,8 @@ public enum LengthUnit
     Inch,
     Centimeter,
     Meter,
-    Foot
+    Foot,
+    Yard,
 }
 
 /*
@@ -61,4 +62,7 @@ public class LengthConverter
             _ => throw new ArgumentException("unit not supported")
         };
     }
+
 }    
+
+//  NEXT STEP REFACTOR INCLUDING READ ME.

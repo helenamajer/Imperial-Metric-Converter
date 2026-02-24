@@ -93,5 +93,16 @@ namespace ImperialMetricConverter.Tests.Converters
             Assert.Equal(0.3048, result, 4);
         }
 
+        [Fact]
+        // Convert 1 yard to the base unit (meter)
+        public void Convert_1YardToMeters_Returns0Point9144()
+        {
+            var converter = new LengthConverter();
+
+            var result = converter.Convert(1, LengthUnit.Yard, LengthUnit.Meter);
+
+            Assert.Equal(0.9144, result, 4);
+        }
+
     }
 }
