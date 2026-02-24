@@ -46,7 +46,7 @@ namespace ImperialMetricConverter.Tests.Converters
 
         [Fact]
         // Negative numbers should not be accpeted; negative length does not exist.
-        public void InchesToCentimeters_WhenGivenNegativeInches_ReturnsFail()
+        public void InchesToCentimeters_WhenGivenNegativeInches_ThrowsArgumentException()
         {
             var converter = new LengthConverter();
 

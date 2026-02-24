@@ -6,6 +6,7 @@ public class LengthConverter
     // Converting inches to centimeters.
     public double InchesToCentimeters(double inches)
     {
+        // input must be positive.
         if (inches < 0)
             throw new ArgumentException("Length cannot be negative.");
         
