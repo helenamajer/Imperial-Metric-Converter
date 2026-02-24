@@ -43,5 +43,14 @@ namespace ImperialMetricConverter.Tests.Converters
             Assert.Equal(5.08, result);
             
         }
+
+        [Fact]
+        // Negative numbers should not be accpeted; negative length does not exist.
+        public void InchesToCentimeters_WhenGivenNegativeInches_ReturnsFail()
+        {
+            var converter = new LengthConverter();
+
+            Assert.Throws<ArgumentException>(() => converter.InchesToCentimeters(-1));
+        }
     }
 }
