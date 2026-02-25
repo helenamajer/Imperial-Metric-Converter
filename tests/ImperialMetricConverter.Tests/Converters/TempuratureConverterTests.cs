@@ -29,5 +29,16 @@ namespace ImperialMetricConverter.Tests.Converters
 
             Assert.Equal(0, result);
         }
+
+        [Fact]
+        // Non-zero value. converting 100C to 212F.
+        public void Convert_100CelsiusToFahrenheit_Returns212Degrees()
+        {
+            var converter = new TempConverter();
+
+            var result = converter.Convert(100, TempUnit.Celsius, TempUnit.Fahrenheit);
+
+            Assert.Equal(212, result);
+        }
     }
 }
