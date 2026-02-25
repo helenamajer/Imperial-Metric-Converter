@@ -40,5 +40,18 @@ namespace ImperialMetricConverter.Tests.Converters
 
             Assert.Equal(212, result);
         }
+
+        [Fact]
+        // converting same units like C to C and F to F returns the same input value.
+        public void Convert_SameToAndFromUnit_ReturnsSameValue()
+        {
+            var converter = new TempConverter();
+
+            var resultC = converter.Convert(1, TempUnit.Celsius, TempUnit.Celsius);
+            var resultF = converter.Convert(1, TempUnit.Fahrenheit, TempUnit.Fahrenheit);
+
+            Assert.Equal(1, resultC);
+            Assert.Equal(1, resultF);
+        }
     }
 }
