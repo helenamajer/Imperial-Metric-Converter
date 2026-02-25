@@ -6,10 +6,10 @@ using Xunit;
 */
 namespace ImperialMetricConverter.Tests.Converters
 {
-    public class TempuratureConverterTests
+    public class TemperatureConverterTests
     {
         [Fact]
-        // converting 0C to 32F.
+        // Converting 0C to 32F.
         public void Convert_0CelsiusToFahrenheit_Returns32Degrees()
         {
             var converter = new TempConverter();
@@ -20,7 +20,7 @@ namespace ImperialMetricConverter.Tests.Converters
         }
 
         [Fact]
-        // converting 32F to 0C.
+        // Converting 32F to 0C.
         public void Convert_32FahrenheitToCelsius_Returns0Degrees()
         {
             var converter = new TempConverter();
@@ -31,7 +31,7 @@ namespace ImperialMetricConverter.Tests.Converters
         }
 
         [Fact]
-        // converting Non-zero values. converting 100C to 212F.
+        // Converting Non-zero values. converting 100C to 212F.
         public void Convert_100CelsiusToFahrenheit_Returns212Degrees()
         {
             var converter = new TempConverter();
@@ -42,7 +42,7 @@ namespace ImperialMetricConverter.Tests.Converters
         }
 
         [Fact]
-        // converting same units like C to C and F to F returns the same input value.
+        // Converting same units like C to C and F to F returns the same input value.
         public void Convert_SameToAndFromUnit_ReturnsSameValue()
         {
             var converter = new TempConverter();
@@ -55,7 +55,7 @@ namespace ImperialMetricConverter.Tests.Converters
         }
 
         [Fact]
-        // converting negative values. -40C to -40F.
+        // Converting negative values. -40C to -40F.
         public void Convert_Negative40CelsiusToFahrenheit_ReturnsNegative40Degrees()
         {
             var converter = new TempConverter();
@@ -66,7 +66,7 @@ namespace ImperialMetricConverter.Tests.Converters
         }
 
         [Fact]
-        // converting floating point values. 1C to 33.8F
+        // Converting floating point values. 1C to 33.8F.
         public void Convert_1CelsiusToFahrenheit_Returns33Point8()
         {
             var converter = new TempConverter();

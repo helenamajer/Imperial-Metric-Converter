@@ -3,7 +3,7 @@ Automated unit testing using Test Driven Development for an Imperial/Metric unit
 
 ## Project Description - Unit System
 - This system is a unit converter for Imperial and Metric measurements.
-- Measurements are broken down into sub-categories such as tempurature, mass, volume, and length.
+- Measurements are broken down into sub-categories such as temperature, mass, volume, and length.
 
 ## Development Tools:
 - Language of implementation: C#
@@ -35,7 +35,7 @@ src/
 <br><br>
 
 tests/ (SUT classes)
-- Converters/ - LengthConverter, MassConverter, VolumeConverter, TempuratureConverter
+- Converters/ - LengthConverter, MassConverter, VolumeConverter, TemperatureConverter
 - Services/ - ConverterService
 - UI/ - ConsoleInterface
 
@@ -60,7 +60,7 @@ tests/ (SUT classes)
 - 1 cup = 236.588 ml (16 tablespoons)
 = 1 gallon = 3.78541 liters (16 cups)
 
-### Tempurature:
+### Temperature:
 - 0 Celsius = 32 Fahrenheit
 - 32 Fahrenheit = 0 Celsius
 - Formula: C = (F - 32) / 1.8 and F = (C * 1.8) + 32

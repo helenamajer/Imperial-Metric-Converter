@@ -17,7 +17,7 @@ public enum LengthUnit
 }
 
 /*
-* Converting the input unit to a base unit (meters)
+* Converting the input unit to a base unit (meters).
 * The base unit (meters) is then converted to the output unit.
 *
 * Without a base unit, each possible pair of units would need their own conversion logic.
@@ -39,7 +39,7 @@ public class LengthConverter
         return FromMeters(meters, to);
     }
 
-    // convert the input unit to a base unit (meters).
+    // Convert the input unit to a base unit (meters).
     private double ToMeters(double value, LengthUnit unit)
     {
         return unit switch
@@ -55,7 +55,7 @@ public class LengthConverter
         };
     }
 
-    // convert the base unit (meters) to the output unit.
+    // Convert the base unit (meters) to the output unit.
     private double FromMeters(double value, LengthUnit unit)
     {
         return unit switch

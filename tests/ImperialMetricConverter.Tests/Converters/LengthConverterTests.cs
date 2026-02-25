@@ -2,7 +2,7 @@ using ImperialMetricConverter.Converters;
 using Xunit;
 
 /*
-* Test suite of metric and imperial measurement conversion for units of length.
+* Test suite for units of length conversion.
 *
 *
 * First test as an example.
@@ -65,7 +65,7 @@ namespace ImperialMetricConverter.Tests.Converters
 
             var result = converter.Convert(1, LengthUnit.Centimeter, LengthUnit.Inch);
 
-            // (expected, actual, decimal value)
+            // (expected, actual, decimal value).
             Assert.Equal(0.3937, result, 4);
         }
 
@@ -105,7 +105,7 @@ namespace ImperialMetricConverter.Tests.Converters
         }
 
         [Fact]
-        // converting 1 mile to the base unit (meters).
+        // Converting 1 mile to the base unit (meters).
         public void Convert_1MileToMeters_Returns1609Point34()
         {
             var converter = new LengthConverter();
@@ -116,7 +116,7 @@ namespace ImperialMetricConverter.Tests.Converters
         }
 
         [Fact]
-        // converting 1 kilometer to the base unit (meters).
+        // Converting 1 kilometer to the base unit (meters).
         public void Convert_1KilometerToMeters_Returns1000()
         {
             var converter = new LengthConverter();
