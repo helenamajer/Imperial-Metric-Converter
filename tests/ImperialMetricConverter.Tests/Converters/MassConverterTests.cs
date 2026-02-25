@@ -18,5 +18,15 @@ namespace ImperialMetricConverter.Tests.Converters
 
             Assert.Equal(0.4536, result, 4);
         }
+
+        [Fact]
+        public void Convert_1KilogramToPounds_Returns2Point2046()
+        {
+            var converter = new MassConverter();
+
+            var result = converter.Convert(1, MassUnit.Kilogram, MassUnit.Pound);
+
+            Assert.Equal(2.4046, result, 4);
+        }
     }
 }
