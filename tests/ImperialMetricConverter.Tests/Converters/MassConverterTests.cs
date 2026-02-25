@@ -38,5 +38,27 @@ namespace ImperialMetricConverter.Tests.Converters
 
             Assert.Throws<ArgumentException>(() => converter.Convert(-1, MassUnit.Pound, MassUnit.Kilogram));
         }
+
+        [Fact]
+        // Converting 0 pounds to 0 kilograms.
+        public void Convert_0PoundsToKilograms_Returns0Kilograms()
+        {
+            var converter = new MassConverter();
+
+            var result = converter.Convert(0, MassUnit.Pound, MassUnit.Kilogram);
+
+            Assert.Equal(0, result);
+        }
+
+        [Fact]
+        // Converting 0 kilograms to 0 pounds.
+        public void Convert_0KilogramsToPounds_Returns0Pounds()
+        {
+            var converter = new MassConverter();
+
+            var result = converter.Convert(0, MassUnit.Kilogram, MassUnit.Pound);
+
+            Assert.Equal(0, result);
+        }
     }
 }
