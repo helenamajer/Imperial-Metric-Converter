@@ -60,5 +60,18 @@ namespace ImperialMetricConverter.Tests.Converters
 
             Assert.Equal(0, result);
         }
+
+        [Fact]
+        // When converting to the same unit, return the same input value.
+        public void Convert_WhenConvertingSameUnit_ReturnSameValue()
+        {
+            var converter = new MassConverter();
+
+            var resultKg = converter.Convert(1, MassUnit.Kilogram, MassUnit.Kilogram);
+            var resultLb = converter.Convert(1, MassUnit.Pound, MassUnit.Pound);
+
+            Assert.Equal(1, resultKg);
+            Assert.Equal(1, resultLb);
+        }
     }
 }
