@@ -29,5 +29,14 @@ namespace ImperialMetricConverter.Tests.Converters
 
             Assert.Equal(2.2046, result, 4);
         }
+
+        [Fact]
+        // Converting negative values throws argument exception. negative mass is not allowed.
+        public void Convert_WhenGivenNegativeValue_ThrowsArgumentException()
+        {
+            var converter = new MassConverter();
+
+            Assert.Throws<ArgumentException>(() => converter.Convert(-1, MassUnit.Pound, MassUnit.Kilogram));
+        }
     }
 }
