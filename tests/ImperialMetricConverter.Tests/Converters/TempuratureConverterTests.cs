@@ -18,5 +18,16 @@ namespace ImperialMetricConverter.Tests.Converters
 
             Assert.Equal(32, result);
         }
+
+        [Fact]
+        // converting 32F to 0C.
+        public void Convert_32FahrenheitToCelsius_Returns0Degrees()
+        {
+            var converter = new TempConverter();
+
+            var result = converter.Convert(32, TempUnit.Fahrenheit, TempUnit.Celsius);
+
+            Assert.Equal(0, result);
+        }
     }
 }
