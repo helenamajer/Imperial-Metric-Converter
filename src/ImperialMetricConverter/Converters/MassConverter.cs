@@ -17,6 +17,10 @@ public class MassConverter
         if (from == MassUnit.Pound && to == MassUnit.Kilogram)
             return value * 0.453592;
 
+        // formula for kilogram to pound conversion.
+        if (from == MassUnit.Kilogram && to == MassUnit.Pound)
+            return value * 2.20462;
+
         throw new NotImplementedException();
     }
 }

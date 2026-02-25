@@ -20,13 +20,14 @@ namespace ImperialMetricConverter.Tests.Converters
         }
 
         [Fact]
+        // Converting 1 Kilogram to 2.2046 pounds.
         public void Convert_1KilogramToPounds_Returns2Point2046()
         {
             var converter = new MassConverter();
 
             var result = converter.Convert(1, MassUnit.Kilogram, MassUnit.Pound);
 
-            Assert.Equal(2.4046, result, 4);
+            Assert.Equal(2.2046, result, 4);
         }
     }
 }
