@@ -56,3 +56,7 @@ nunit-*.xml
 # OS generated
 .DS_Store
 .DS_Store?
+
+# Ignore coverage reports
+coveragereport/
+TestResults/
