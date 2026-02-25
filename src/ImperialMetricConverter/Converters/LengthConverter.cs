@@ -22,7 +22,7 @@ public enum LengthUnit
 *
 * Without a base unit, each possible pair of units would need their own conversion logic.
 */
-public class LengthConverter
+public class LengthConverter : IUnitConverter<LengthUnit>
 {
     
     public double Convert(double value, LengthUnit from, LengthUnit to)

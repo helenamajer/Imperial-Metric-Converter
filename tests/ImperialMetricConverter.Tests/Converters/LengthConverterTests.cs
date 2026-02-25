@@ -4,7 +4,6 @@ using Xunit;
 /*
 * Test suite for units of length conversion.
 *
-*
 * First test as an example.
 * Convert 1 inch to cm.
 */
@@ -36,7 +35,7 @@ namespace ImperialMetricConverter.Tests.Converters
 
         [Fact]
         // Test converting 2 inches to 5.08 centimeters.
-        public void Convert_WhenConverting2InchesToCentimeters_Returns5Point08()
+        public void Convert_WhenGiven2InchesToCentimeters_Returns5Point08()
         {
             var converter = new LengthConverter();
 

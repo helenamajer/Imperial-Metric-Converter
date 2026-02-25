@@ -9,7 +9,7 @@ public enum MassUnit
     Kilogram,
 }
 
-public class MassConverter
+public class MassConverter : IUnitConverter<MassUnit>
 {
     public double Convert(double value, MassUnit from, MassUnit to)
     {

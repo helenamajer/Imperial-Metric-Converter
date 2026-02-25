@@ -9,7 +9,7 @@ public enum TempUnit
     Fahrenheit,
 }
 
-public class TempConverter
+public class TempConverter : IUnitConverter<TempUnit>
 {
     public double Convert(double value, TempUnit from, TempUnit to)
     {
