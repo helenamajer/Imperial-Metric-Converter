@@ -18,6 +18,9 @@ public class TempConverter
             // formula for F to C conversion.
             return (value - 32) * 5 / 9;
 
+        if (from == to)
+            return value;
+
         throw new NotImplementedException();
     }
 }
