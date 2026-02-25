@@ -16,6 +16,11 @@ public class MassConverter
         // if input is negative, throw argument exception.
         if (value < 0)
             throw new ArgumentException("Mass cannot be negative.");
+
+        // when converting the the same unit, return the same input value
+        // E.g. kg to kg, lb to lb.
+        if (from == to)
+            return value;
         
         // formula for pound to kilogram conversion.
         if (from == MassUnit.Pound && to == MassUnit.Kilogram)
