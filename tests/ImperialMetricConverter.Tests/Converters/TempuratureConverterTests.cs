@@ -31,7 +31,7 @@ namespace ImperialMetricConverter.Tests.Converters
         }
 
         [Fact]
-        // Non-zero value. converting 100C to 212F.
+        // converting Non-zero values. converting 100C to 212F.
         public void Convert_100CelsiusToFahrenheit_Returns212Degrees()
         {
             var converter = new TempConverter();
@@ -52,6 +52,28 @@ namespace ImperialMetricConverter.Tests.Converters
 
             Assert.Equal(1, resultC);
             Assert.Equal(1, resultF);
+        }
+
+        [Fact]
+        // converting negative values. -40C to -40F.
+        public void Convert_Negative40CelsiusToFahrenheit_ReturnsNegative40Degrees()
+        {
+            var converter = new TempConverter();
+
+            var result = converter.Convert(-40, TempUnit.Celsius, TempUnit.Fahrenheit);
+
+            Assert.Equal(-40, result);
+        }
+
+        [Fact]
+        // converting floating point values. 1C to 33.8F
+        public void Convert_1CelsiusToFahrenheit_Returns33Point8()
+        {
+            var converter = new TempConverter();
+
+            var result = converter.Convert(1, TempUnit.Celsius, TempUnit.Fahrenheit);
+
+            Assert.Equal(33.8, result);
         }
     }
 }
