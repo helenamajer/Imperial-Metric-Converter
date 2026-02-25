@@ -8,8 +8,12 @@ public enum TempUnit
 
 public class TempConverter
 {
-    public double Convert(double value, TempUnit From, TempUnit To)
+    public double Convert(double value, TempUnit from, TempUnit to)
     {
-        return 0;
+        if (from == TempUnit.Celsius && to == TempUnit.Fahrenheit)
+            // formula for C to F conversion.
+            return (value * 9 / 5) + 32;
+        
+        throw new NotImplementedException();
     }
 }
