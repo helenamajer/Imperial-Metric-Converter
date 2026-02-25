@@ -14,7 +14,7 @@ namespace ImperialMetricConverter.Tests.Converters
         {
             var converter = new MassConverter();
 
-            var result = converter.Convert(1, MassUnit.Kilogram, MassUnit.Pound);
+            var result = converter.Convert(1, MassUnit.Pound, MassUnit.Kilogram);
 
             Assert.Equal(0.4536, result, 4);
         }
