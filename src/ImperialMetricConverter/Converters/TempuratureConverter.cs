@@ -14,6 +14,10 @@ public class TempConverter
             // formula for C to F conversion.
             return (value * 9 / 5) + 32;
         
+        if (from == TempUnit.Fahrenheit && to == TempUnit.Celsius)
+            // formula for F to C conversion.
+            return (value - 32) * 5 / 9;
+
         throw new NotImplementedException();
     }
 }
