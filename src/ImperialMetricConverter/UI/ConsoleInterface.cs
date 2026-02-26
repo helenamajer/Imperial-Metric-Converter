@@ -16,12 +16,12 @@ public class ConsoleInterface
 
     public void Run()
     {
-        // display welcome message.
+        // Display welcome message.
         _inputOutput.WriteLine("Welcome to the Metric/Imperial Unit Converter!");
 
         var option = _inputOutput.ReadLine();
 
-        // length conversion flow.
+        // Length conversion flow.
         if (option == "1")
         {
             // read value
@@ -42,5 +42,28 @@ public class ConsoleInterface
             // display result and force invariant culture when converting to string.
             _inputOutput.WriteLine(result.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture));
         }
+
+        // Temperature conversion flow.
+        if (option == "2")
+        {
+            // read value
+            _inputOutput.WriteLine("Enter value:");
+            double value = double.Parse(_inputOutput.ReadLine());
+
+            // read 'from' unit
+            _inputOutput.WriteLine("Enter from unit:");
+            TempUnit from = Enum.Parse<TempUnit>(_inputOutput.ReadLine(), true);
+
+            // read 'to' unit
+            _inputOutput.WriteLine("Enter to unit:");
+            TempUnit to = Enum.Parse<TempUnit>(_inputOutput.ReadLine(), true);
+
+            // call service
+            double result = _service.ConvertTemperature(value, from, to);
+
+            // display result
+            _inputOutput.WriteLine(result.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture));
+        }
+
     }
 }

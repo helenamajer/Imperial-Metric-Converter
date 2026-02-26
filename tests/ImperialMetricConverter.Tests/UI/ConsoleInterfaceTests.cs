@@ -46,9 +46,9 @@ namespace ImperialMetricConverter.Tests.UI
             var inputOutputMock = new Mock<IUserIO>();
 
             inputOutputMock.SetupSequence(inputOutput => inputOutput.ReadLine())
-                .Returns("1") // menu selection
-                .Returns("10") // value
-                .Returns("Meter") // from
+                .Returns("1")          // menu selection
+                .Returns("10")         // value
+                .Returns("Meter")      // from
                 .Returns("Kilometer"); // to
             
             serviceMock
@@ -78,10 +78,10 @@ namespace ImperialMetricConverter.Tests.UI
             var serviceMock = new Mock<IConverterService>();
             var inputOutputMock = new Mock<IUserIO>();
 
-            inputOutputMock.SetupSequence(io => io.ReadLine())
-                .Returns("2")        // menu option
-                .Returns("100")      // value
-                .Returns("Celsius")  // from
+            inputOutputMock.SetupSequence(inputOutput => inputOutput.ReadLine())
+                .Returns("2")          // menu option
+                .Returns("100")        // value
+                .Returns("Celsius")    // from
                 .Returns("Fahrenheit"); // to
 
 
@@ -100,7 +100,7 @@ namespace ImperialMetricConverter.Tests.UI
                 Times.Once);
 
             inputOutputMock.Verify(
-                io => io.WriteLine(It.Is<string>(msg => msg.Contains("212"))),
+                inputOutput => inputOutput.WriteLine(It.Is<string>(msg => msg.Contains("212"))),
                 Times.Once);
         }
     }
