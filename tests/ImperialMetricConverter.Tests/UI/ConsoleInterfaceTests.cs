@@ -5,7 +5,7 @@ using ImperialMetricConverter.Services;
 using ImperialMetricConverter.Converters;
 
 /*
-* Test suite for console user interface .
+* Test suite for mocking console user interface .
 */
 namespace ImperialMetricConverter.Tests.UI
 {
@@ -37,6 +37,7 @@ namespace ImperialMetricConverter.Tests.UI
         }
 
         [Fact]
+        // Length conversion flow.
         public void RunApp_LengthFlow_CallsConvertLength_DisplaysResult()
         {
             // Arrange
@@ -66,6 +67,40 @@ namespace ImperialMetricConverter.Tests.UI
 
             inputOutputMock.Verify(
                 inputOutput => inputOutput.WriteLine(It.Is<string>(msg => msg.Contains("0.01"))),
+                Times.Once);
+        }
+
+        [Fact]
+        // Temp conversion flow.
+        public void RunApp_TemperatureFlow_CallsConvertTemperature_DisplaysResult()
+        {
+            // Arrange
+            var serviceMock = new Mock<IConverterService>();
+            var inputOutputMock = new Mock<IUserIO>();
+
+            inputOutputMock.SetupSequence(io => io.ReadLine())
+                .Returns("2")        // menu option
+                .Returns("100")      // value
+                .Returns("Celsius")  // from
+                .Returns("Fahrenheit"); // to
+
+
+            serviceMock
+                .Setup(s => s.ConvertTemperature(100, TempUnit.Celsius, TempUnit.Fahrenheit))
+                .Returns(212);
+
+            var userInterface = new ConsoleInterface(serviceMock.Object, inputOutputMock.Object);
+
+            // Act
+            userInterface.Run();
+
+            // Assert
+            serviceMock.Verify(
+                s => s.ConvertTemperature(100, TempUnit.Celsius, TempUnit.Fahrenheit),
+                Times.Once);
+
+            inputOutputMock.Verify(
+                io => io.WriteLine(It.Is<string>(msg => msg.Contains("212"))),
                 Times.Once);
         }
     }
