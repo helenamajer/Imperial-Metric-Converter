@@ -103,5 +103,38 @@ namespace ImperialMetricConverter.Tests.UI
                 inputOutput => inputOutput.WriteLine(It.Is<string>(msg => msg.Contains("212"))),
                 Times.Once);
         }
+
+        [Fact]
+        // Mass converion flow.
+        public void RunApp_MassFlow_CallsConvertMass_DisplaysResult()
+        {
+            // Arrange
+            var serviceMock = new Mock<IConverterService>();
+            var inputOutputMock = new Mock<IUserIO>();
+
+            inputOutputMock.SetupSequence(inputOutput => inputOutput.ReadLine())
+                .Returns("3")         // menu option
+                .Returns("")      // value
+                .Returns("Pound")     // from
+                .Returns("Kilogram"); // to
+
+            serviceMock
+                .Setup(s => s.ConvertMass(1000, MassUnit.Pound, MassUnit.Kilogram))
+                .Returns(1);
+
+            var userInterface = new ConsoleInterface(serviceMock.Object, inputOutputMock.Object);
+
+            // Act
+            userInterface.Run();
+
+            // Assert
+            serviceMock.Verify(
+                s => s.ConvertMass(1000, MassUnit.Pound, MassUnit.Kilogram),
+                Times.Once);
+
+            inputOutputMock.Verify(
+                inputOutput => inputOutput.WriteLine(It.Is<string>(msg => msg.Contains("453.59"))),
+                Times.Once);
+        }
     }
 }
