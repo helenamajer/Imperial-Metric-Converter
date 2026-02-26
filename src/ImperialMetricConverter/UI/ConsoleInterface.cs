@@ -65,5 +65,26 @@ public class ConsoleInterface
             _inputOutput.WriteLine(result.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture));
         }
 
+        // Mass conversion flow.
+        if (option == "3")
+        {
+            // read value
+            _inputOutput.WriteLine("Enter value:");
+            double value = double.Parse(_inputOutput.ReadLine());
+
+            // read 'from' unit
+            _inputOutput.WriteLine("Enter from unit:");
+            MassUnit from = Enum.Parse<MassUnit>(_inputOutput.ReadLine(), true);
+
+            // read 'to' unit
+            _inputOutput.WriteLine("Enter to unit:");
+            MassUnit to = Enum.Parse<MassUnit>(_inputOutput.ReadLine(), true);
+
+            // call service
+            double result = _service.ConvertMass(value, from, to);
+
+            // display result
+            _inputOutput.WriteLine(result.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture));
+        }
     }
 }

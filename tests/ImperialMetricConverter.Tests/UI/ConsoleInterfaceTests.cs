@@ -114,13 +114,13 @@ namespace ImperialMetricConverter.Tests.UI
 
             inputOutputMock.SetupSequence(inputOutput => inputOutput.ReadLine())
                 .Returns("3")         // menu option
-                .Returns("")      // value
+                .Returns("1000")      // value
                 .Returns("Pound")     // from
                 .Returns("Kilogram"); // to
 
             serviceMock
                 .Setup(s => s.ConvertMass(1000, MassUnit.Pound, MassUnit.Kilogram))
-                .Returns(1);
+                .Returns(453.59);
 
             var userInterface = new ConsoleInterface(serviceMock.Object, inputOutputMock.Object);
 
