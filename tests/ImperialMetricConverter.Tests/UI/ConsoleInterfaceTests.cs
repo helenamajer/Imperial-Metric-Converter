@@ -5,7 +5,7 @@ using ImperialMetricConverter.Services;
 using ImperialMetricConverter.Converters;
 
 /*
-* Test suite for mocking console user interface .
+* Test suite for mocking console user interface.
 */
 namespace ImperialMetricConverter.Tests.UI
 {
@@ -22,9 +22,11 @@ namespace ImperialMetricConverter.Tests.UI
 
             // input so Run() does not break.
             inputOutputMock
-                .Setup(inputOutput => inputOutput.ReadLine())
+                .SetupSequence(inputOutput => inputOutput.ReadLine())
                 // invalid input to break flow
-                .Returns("99");
+                .Returns("99")
+                // exit
+                .Returns("0");
 
             var userInterface = new ConsoleInterface(serviceMock.Object, inputOutputMock.Object);
             
@@ -40,33 +42,37 @@ namespace ImperialMetricConverter.Tests.UI
         // Length conversion flow.
         public void RunApp_LengthFlow_CallsConvertLength_DisplaysResult()
         {
-            // Arrange
+            // mock the service dependency
             var serviceMock = new Mock<IConverterService>();
 
+            // mock the input output dependency
             var inputOutputMock = new Mock<IUserIO>();
 
+            // setup mock behavious
             inputOutputMock.SetupSequence(inputOutput => inputOutput.ReadLine())
-                .Returns("1")          // menu selection
-                .Returns("10")         // value
-                .Returns("Meter")      // from
-                .Returns("Kilometer"); // to
+                .Returns("1")         // main menu option
+                .Returns("3")         // from meter option
+                .Returns("7")         // to kilometer option
+                .Returns("500")       // value
+                .Returns("0");        // exit loop
             
             serviceMock
-                .Setup(s => s.ConvertLength(10, LengthUnit.Meter, LengthUnit.Kilometer))
-                .Returns(0.01);
+                .Setup(s => s.ConvertLength(500, LengthUnit.Meter, LengthUnit.Kilometer))
+                .Returns(0.5);
 
+            // isloate - inject mocked dependency
             var userInterface = new ConsoleInterface(serviceMock.Object, inputOutputMock.Object);
 
             // Act
             userInterface.Run();
 
-            // Assert
+            // Assert and verify interactions
             serviceMock.Verify(
-                s => s.ConvertLength(10, LengthUnit.Meter, LengthUnit.Kilometer),
+                s => s.ConvertLength(500, LengthUnit.Meter, LengthUnit.Kilometer),
                 Times.Once);
 
             inputOutputMock.Verify(
-                inputOutput => inputOutput.WriteLine(It.Is<string>(msg => msg.Contains("0.01"))),
+                inputOutput => inputOutput.WriteLine(It.Is<string>(msg => msg.Contains("0,5"))),
                 Times.Once);
         }
 
@@ -74,33 +80,38 @@ namespace ImperialMetricConverter.Tests.UI
         // Temp conversion flow.
         public void RunApp_TemperatureFlow_CallsConvertTemperature_DisplaysResult()
         {
-            // Arrange
+            // mock the service dependency
             var serviceMock = new Mock<IConverterService>();
+
+            // mock the input output dependency
             var inputOutputMock = new Mock<IUserIO>();
 
+            // setup mock behavious
             inputOutputMock.SetupSequence(inputOutput => inputOutput.ReadLine())
-                .Returns("2")          // menu option
-                .Returns("100")        // value
-                .Returns("Celsius")    // from
-                .Returns("Fahrenheit"); // to
+                .Returns("2")         // main menu option
+                .Returns("1")         // from 'celsius' option
+                .Returns("2")         // to 'fahrenheit' option
+                .Returns("30")        // value
+                .Returns("0");        // exit loop
 
 
             serviceMock
-                .Setup(s => s.ConvertTemperature(100, TempUnit.Celsius, TempUnit.Fahrenheit))
-                .Returns(212);
+                .Setup(s => s.ConvertTemperature(30, TempUnit.Celsius, TempUnit.Fahrenheit))
+                .Returns(86);
 
+            // isloate - inject mocked dependency
             var userInterface = new ConsoleInterface(serviceMock.Object, inputOutputMock.Object);
 
             // Act
             userInterface.Run();
 
-            // Assert
+            // Assert and verify interactions
             serviceMock.Verify(
-                s => s.ConvertTemperature(100, TempUnit.Celsius, TempUnit.Fahrenheit),
+                s => s.ConvertTemperature(30, TempUnit.Celsius, TempUnit.Fahrenheit),
                 Times.Once);
 
             inputOutputMock.Verify(
-                inputOutput => inputOutput.WriteLine(It.Is<string>(msg => msg.Contains("212"))),
+                inputOutput => inputOutput.WriteLine(It.Is<string>(msg => msg.Contains("86"))),
                 Times.Once);
         }
 
@@ -108,32 +119,37 @@ namespace ImperialMetricConverter.Tests.UI
         // Mass converion flow.
         public void RunApp_MassFlow_CallsConvertMass_DisplaysResult()
         {
-            // Arrange
+            // mock the service dependency
             var serviceMock = new Mock<IConverterService>();
+
+            // mock the input output dependency
             var inputOutputMock = new Mock<IUserIO>();
 
+            // setup mock behavious
             inputOutputMock.SetupSequence(inputOutput => inputOutput.ReadLine())
-                .Returns("3")         // menu option
+                .Returns("3")         // main menu option
+                .Returns("1")         // from 'pound' option
+                .Returns("2")         // to 'kilogram' option
                 .Returns("1000")      // value
-                .Returns("Pound")     // from
-                .Returns("Kilogram"); // to
+                .Returns("0");        // exit loop
 
             serviceMock
                 .Setup(s => s.ConvertMass(1000, MassUnit.Pound, MassUnit.Kilogram))
                 .Returns(453.59);
 
+            // isloate - inject mocked dependency
             var userInterface = new ConsoleInterface(serviceMock.Object, inputOutputMock.Object);
 
             // Act
             userInterface.Run();
 
-            // Assert
+            // Assert and verify interactions
             serviceMock.Verify(
                 s => s.ConvertMass(1000, MassUnit.Pound, MassUnit.Kilogram),
                 Times.Once);
 
             inputOutputMock.Verify(
-                inputOutput => inputOutput.WriteLine(It.Is<string>(msg => msg.Contains("453.59"))),
+                inputOutput => inputOutput.WriteLine(It.Is<string>(msg => msg.Contains("453,59"))),
                 Times.Once);
         }
     }

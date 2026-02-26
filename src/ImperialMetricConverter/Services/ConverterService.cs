@@ -1,5 +1,6 @@
 using ImperialMetricConverter.Converters;
 
+// Service depedends on the interface
 namespace ImperialMetricConverter.Services;
 
 // Acts as the application layer between UI and domain layer (converters).

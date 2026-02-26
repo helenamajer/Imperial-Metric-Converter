@@ -3,88 +3,201 @@ using ImperialMetricConverter.Converters;
 
 namespace ImperialMetricConverter.UI;
 
+// Menu based console application
+// Handles user interaction and delegates conversion logic to the service layer.
 public class ConsoleInterface
 {
     private readonly IConverterService _service;
     private readonly IUserIO _inputOutput;
 
+    // Dependency injections through constructors using IConverterService and IUserIO.
     public ConsoleInterface(IConverterService service, IUserIO inputOutput)
     {
         _service = service;
         _inputOutput = inputOutput;
     }
 
+    // main application loop
     public void Run()
-    {
-        // Display welcome message.
+{
         _inputOutput.WriteLine("Welcome to the Metric/Imperial Unit Converter!");
 
-        var option = _inputOutput.ReadLine();
+        bool running = true;
 
-        // Length conversion flow.
-        if (option == "1")
+        while (running)
         {
-            // read value
-            var valueInput = _inputOutput.ReadLine();
-            double value = double.Parse(valueInput);
+            _inputOutput.WriteLine("\nSelect conversion type:");
+            _inputOutput.WriteLine("1. Length");
+            _inputOutput.WriteLine("2. Temperature");
+            _inputOutput.WriteLine("3. Mass");
+            _inputOutput.WriteLine("0. Exit");
 
-            // read 'from' unit
-            var fromInput = _inputOutput.ReadLine();
-            LengthUnit fromUnit = Enum.Parse<LengthUnit>(fromInput);
+            string choice = _inputOutput.ReadLine();
 
-            // read 'to' unit
-            var toInput = _inputOutput.ReadLine();
-            LengthUnit toUnit = Enum.Parse<LengthUnit>(toInput);
+            if (choice == null)
+            {
+                break;
+            }
 
-            // call service
-            double result = _service.ConvertLength(value, fromUnit, toUnit);
+            switch (choice)
+            {
+                case "1":
+                    HandleLength();
+                    break;
+                case "2":
+                    HandleTemperature();
+                    break;
+                case "3":
+                    HandleMass();
+                    break;
+                case "0":
+                    running = false;
+                    break;
+                default:
+                    _inputOutput.WriteLine("Invalid option.");
+                    break;
+            }
+        }
+    }
 
-            // display result and force invariant culture when converting to string.
-            _inputOutput.WriteLine(result.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture));
+    // length conversion flow
+    // prompts user and delegates conversion to the service layer
+    private void HandleLength()
+    {
+        var units = Enum.GetValues<LengthUnit>();
+
+        _inputOutput.WriteLine("Select 'from' unit:");
+        for (int i = 0; i < units.Length; i++)
+        {
+            _inputOutput.WriteLine($"{i + 1}. {units[i]}");
         }
 
-        // Temperature conversion flow.
-        if (option == "2")
+        if (!int.TryParse(_inputOutput.ReadLine(), out int fromIndex) ||
+            fromIndex < 1 || fromIndex > units.Length)
         {
-            // read value
-            _inputOutput.WriteLine("Enter value:");
-            double value = double.Parse(_inputOutput.ReadLine());
-
-            // read 'from' unit
-            _inputOutput.WriteLine("Enter from unit:");
-            TempUnit from = Enum.Parse<TempUnit>(_inputOutput.ReadLine(), true);
-
-            // read 'to' unit
-            _inputOutput.WriteLine("Enter to unit:");
-            TempUnit to = Enum.Parse<TempUnit>(_inputOutput.ReadLine(), true);
-
-            // call service
-            double result = _service.ConvertTemperature(value, from, to);
-
-            // display result
-            _inputOutput.WriteLine(result.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture));
+            _inputOutput.WriteLine("Invalid selection.");
+            return;
         }
 
-        // Mass conversion flow.
-        if (option == "3")
+        _inputOutput.WriteLine("Select 'to' unit:");
+        for (int i = 0; i < units.Length; i++)
         {
-            // read value
-            _inputOutput.WriteLine("Enter value:");
-            double value = double.Parse(_inputOutput.ReadLine());
-
-            // read 'from' unit
-            _inputOutput.WriteLine("Enter from unit:");
-            MassUnit from = Enum.Parse<MassUnit>(_inputOutput.ReadLine(), true);
-
-            // read 'to' unit
-            _inputOutput.WriteLine("Enter to unit:");
-            MassUnit to = Enum.Parse<MassUnit>(_inputOutput.ReadLine(), true);
-
-            // call service
-            double result = _service.ConvertMass(value, from, to);
-
-            // display result
-            _inputOutput.WriteLine(result.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture));
+            _inputOutput.WriteLine($"{i + 1}. {units[i]}");
         }
+
+        if (!int.TryParse(_inputOutput.ReadLine(), out int toIndex) ||
+            toIndex < 1 || toIndex > units.Length)
+        {
+            _inputOutput.WriteLine("Invalid selection.");
+            return;
+        }
+
+        _inputOutput.WriteLine("Enter value:");
+        if (!double.TryParse(_inputOutput.ReadLine(), out double value))
+        {
+            _inputOutput.WriteLine("Invalid number.");
+            return;
+        }
+
+        var from = units[fromIndex - 1];
+        var to = units[toIndex - 1];
+
+        double result = _service.ConvertLength(value, from, to);
+
+        _inputOutput.WriteLine($"Result: {result}");
+    }
+
+    // temperature conversion flow
+    // prompts user and delegates conversion to the service layer
+    private void HandleTemperature()
+    {
+        var units = Enum.GetValues<TempUnit>();
+
+        _inputOutput.WriteLine("Select 'from' unit:");
+        for (int i = 0; i < units.Length; i++)
+        {
+            _inputOutput.WriteLine($"{i + 1}. {units[i]}");
+        }
+
+        if (!int.TryParse(_inputOutput.ReadLine(), out int fromIndex) ||
+            fromIndex < 1 || fromIndex > units.Length)
+        {
+            _inputOutput.WriteLine("Invalid selection.");
+            return;
+        }
+
+        _inputOutput.WriteLine("Select 'to unit:");
+        for (int i = 0; i < units.Length; i++)
+        {
+            _inputOutput.WriteLine($"{i + 1}. {units[i]}");
+        }
+
+        if (!int.TryParse(_inputOutput.ReadLine(), out int toIndex) ||
+            toIndex < 1 || toIndex > units.Length)
+        {
+            _inputOutput.WriteLine("Invalid selection.");
+            return;
+        }
+
+        _inputOutput.WriteLine("Enter value:");
+        if (!double.TryParse(_inputOutput.ReadLine(), out double value))
+        {
+            _inputOutput.WriteLine("Invalid number.");
+            return;
+        }
+
+        var from = units[fromIndex - 1];
+        var to = units[toIndex - 1];
+
+        double result = _service.ConvertTemperature(value, from, to);
+
+        _inputOutput.WriteLine($"Result: {result}");
+    }
+
+    // mass conversion flow
+    // prompts user and delegates conversion to the service layer
+    private void HandleMass()
+    {
+        var units = Enum.GetValues<MassUnit>();
+
+        _inputOutput.WriteLine("Select 'from' unit:");
+        for (int i = 0; i < units.Length; i++)
+        {
+            _inputOutput.WriteLine($"{i + 1}. {units[i]}");
+        }
+
+        if (!int.TryParse(_inputOutput.ReadLine(), out int fromIndex) ||
+            fromIndex < 1 || fromIndex > units.Length)
+        {
+            _inputOutput.WriteLine("Invalid selection.");
+            return;
+        }
+
+        _inputOutput.WriteLine("Select 'to' unit:");
+        for (int i = 0; i < units.Length; i++)
+        {
+            _inputOutput.WriteLine($"{i + 1}. {units[i]}");
+        }
+
+        if (!int.TryParse(_inputOutput.ReadLine(), out int toIndex) ||
+            toIndex < 1 || toIndex > units.Length)
+        {
+            _inputOutput.WriteLine("Invalid selection.");
+            return;
+        }
+
+        _inputOutput.WriteLine("Enter value:");
+        if (!double.TryParse(_inputOutput.ReadLine(), out double value))
+        {
+            _inputOutput.WriteLine("Invalid number.");
+            return;
+        }
+
+        var from = units[fromIndex - 1];
+        var to = units[toIndex - 1];
+
+        double result = _service.ConvertMass(value, from, to);
+
+        _inputOutput.WriteLine($"Result: {result}");
     }
 }

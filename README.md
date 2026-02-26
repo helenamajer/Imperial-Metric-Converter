@@ -5,6 +5,8 @@ Automated unit testing using Test Driven Development for an Imperial/Metric unit
 - This system is a unit converter for Imperial and Metric measurements.
 - Measurements are broken down into sub-categories such as temperature, mass, volume, and length.
 
+- Architecture flow: Program > Concrete converters > IUnitConverter > ConverterService > IConverterService > ConsoleInterface
+
 ## Development Tools:
 - Language of implementation: C#
 - Framework for unit-testing: XUnit
