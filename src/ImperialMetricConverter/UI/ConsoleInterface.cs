@@ -16,6 +16,31 @@ public class ConsoleInterface
 
     public void Run()
     {
+        // display welcome message.
         _inputOutput.WriteLine("Welcome to the Metric/Imperial Unit Converter!");
+
+        var option = _inputOutput.ReadLine();
+
+        // length conversion flow.
+        if (option == "1")
+        {
+            // read value
+            var valueInput = _inputOutput.ReadLine();
+            double value = double.Parse(valueInput);
+
+            // read 'from' unit
+            var fromInput = _inputOutput.ReadLine();
+            LengthUnit fromUnit = Enum.Parse<LengthUnit>(fromInput);
+
+            // read 'to' unit
+            var toInput = _inputOutput.ReadLine();
+            LengthUnit toUnit = Enum.Parse<LengthUnit>(toInput);
+
+            // call service
+            double result = _service.ConvertLength(value, fromUnit, toUnit);
+
+            // display result and force invariant culture when converting to string.
+            _inputOutput.WriteLine(result.ToString("0.####", System.Globalization.CultureInfo.InvariantCulture));
+        }
     }
 }
