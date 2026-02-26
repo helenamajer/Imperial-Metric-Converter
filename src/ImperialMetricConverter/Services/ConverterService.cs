@@ -5,7 +5,7 @@ namespace ImperialMetricConverter.Services;
 // Acts as the application layer between UI and domain layer (converters).
 // This service delegates conversion requests to the respected converter.
 // This abstraction allows dependency injection and mocking.
-public class ConverterService
+public class ConverterService : IConverterService
 {
     // Dependencies injected through constructor (DI).
     private readonly IUnitConverter<LengthUnit> _lengthConverter;

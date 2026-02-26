@@ -1,13 +1,14 @@
 using ImperialMetricConverter.Services;
+using ImperialMetricConverter.Converters;
 
 namespace ImperialMetricConverter.UI;
 
 public class ConsoleInterface
 {
-    private readonly ConverterService _service;
+    private readonly IConverterService _service;
     private readonly IUserIO _inputOutput;
 
-    public ConsoleInterface(ConverterService service, IUserIO inputOutput)
+    public ConsoleInterface(IConverterService service, IUserIO inputOutput)
     {
         _service = service;
         _inputOutput = inputOutput;
