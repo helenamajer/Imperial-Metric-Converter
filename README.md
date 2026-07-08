@@ -1,68 +1,88 @@
-# Test Driven Development - Imperial/Metric Converter.
-Automated unit testing using Test Driven Development for an Imperial/Metric unit converter!
+# Imperial/Metric Converter
 
-## Project Description - Unit System
-- This system is a unit converter for Imperial and Metric measurements.
-- Measurements are broken down into sub-categories such as temperature, mass, volume, and length.
+A modular Imperial/Metric unit converter built in C#, developed using Test-Driven Development (TDD) with a Red-Green-Refactor workflow.
 
-- Architecture flow: Program > Concrete converters > IUnitConverter > ConverterService > IConverterService > ConsoleInterface
+## Overview
 
-## Development Tools:
-- Language of implementation: C#
-- Framework for unit-testing: XUnit
-- Framework for Mocking: Moq
-- Code coverage tool: Coverlet
+This project converts measurements between Imperial and Metric units across four categories: length, mass, volume, and temperature. Rather than hardcoding a direct formula for every possible unit pair, each converter routes through a common base unit, keeping the conversion logic centralized and free of duplication.
 
-## Running the Program
-Test normally: 
-- dotnet build
-- dotnet test
+**Architecture flow:**
+```
+Program → Concrete Converters → IUnitConverter → ConverterService → IConverterService → ConsoleInterface
+```
 
-Run tests with coverage:
-- dotnet test \p:CollectCoverage=true
+## Tech Stack
 
-More explicit with coverage:
-- dotnet test \
-  /p:CollectCoverage=true \
-  /p:CoverletOutputFormat=opencover
+| Purpose | Tool |
+|---|---|
+| Language | C# / .NET |
+| Unit testing | xUnit |
+| Mocking | Moq |
+| Code coverage | Coverlet |
 
-## Project Architecture
-tests are 1:1 with src.
+## Project Structure
 
+Tests are 1:1 with `src/` — every class under `src/` has a corresponding test class under `tests/`.
+
+```
 src/
-- Converters/ - handels the math for each conversion
-- Models/ - holds data structures
-- Services/ - validate user input and coordinate between the 3 converters
-- UI/ - formats console UI/UX
-<br><br>
+├── Converters/   # Conversion math for each unit category
+├── Models/       # Data structures
+├── Services/     # Validates user input, coordinates between converters
+└── UI/           # Console UI/UX formatting
 
-tests/ (SUT classes)
-- Converters/ - LengthConverter, MassConverter, VolumeConverter, TemperatureConverter
-- Services/ - ConverterService
-- UI/ - ConsoleInterface
+tests/
+├── Converters/   # LengthConverter, MassConverter, VolumeConverter, TemperatureConverter
+├── Services/     # ConverterService
+└── UI/           # ConsoleInterface
+```
+
+## Running the Project
+
+**Build and run tests:**
+```bash
+dotnet build
+dotnet test
+```
+
+**Run tests with code coverage:**
+```bash
+dotnet test /p:CollectCoverage=true
+```
+
+**Run tests with coverage in OpenCover format** (for use with report generators like ReportGenerator):
+```bash
+dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+```
 
 ## Conversion Reference
-### Length:
-- 1 inch = 2.54 cm / 0.0254 m
-- 1 foot = 0.3048 m (12 inches)
-- 1 yard = 0.9144 m (3 feet)
-- 1 mile = 1609.34 m / 1.609344 km (5280 feet)
 
-- 1 centimeter = 0.01 m
-- 1 meter = 1 m
-- 1 kilometer = 1000 m
+### Length
+| Unit | Equivalent |
+|---|---|
+| 1 inch | 2.54 cm / 0.0254 m |
+| 1 foot | 0.3048 m (12 inches) |
+| 1 yard | 0.9144 m (3 feet) |
+| 1 mile | 1609.34 m / 1.609344 km (5280 feet) |
+| 1 centimeter | 0.01 m |
+| 1 meter | 1 m |
+| 1 kilometer | 1000 m |
 
-### Mass:
-- 1 pound = 0.453592 kg
-- 1 ounce = 28.3495 g (1/16 pound)
+### Mass
+| Unit | Equivalent |
+|---|---|
+| 1 pound | 0.453592 kg |
+| 1 ounce | 28.3495 g (1/16 pound) |
 
-### Volume:
-- 1 teaspoon = 4.92892 ml
-- 1 tablespoon = 14.7868 ml (3 teaspoons)
-- 1 cup = 236.588 ml (16 tablespoons)
-= 1 gallon = 3.78541 liters (16 cups)
+### Volume
+| Unit | Equivalent |
+|---|---|
+| 1 teaspoon | 4.92892 ml |
+| 1 tablespoon | 14.7868 ml (3 teaspoons) |
+| 1 cup | 236.588 ml (16 tablespoons) |
+| 1 gallon | 3.78541 liters (16 cups) |
 
-### Temperature:
-- 0 Celsius = 32 Fahrenheit
-- 32 Fahrenheit = 0 Celsius
-- Formula: C = (F - 32) / 1.8 and F = (C * 1.8) + 32
+### Temperature
+- 0°C = 32°F
+- 32°F = 0°C
+- Formula: `C = (F - 32) / 1.8` and `F = (C × 1.8) + 32`
